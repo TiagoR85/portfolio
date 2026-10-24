@@ -1,0 +1,17 @@
+---
+import { site } from '../content/site';
+const links = [
+  { label: 'Serviços', href: '/#servicos' },
+  { label: 'Projetos', href: '/#projetos' },
+  { label: 'Sobre', href: '/#sobre' },
+  { label: 'CV', href: '/cv' },
+  { label: 'Contato', href: '/#contato' },
+];
+---
+<nav aria-label="Navegação principal"
+  class="sticky top-0 z-40 flex w-full flex-col gap-1.5 border-b border-[var(--fg)]/10 bg-[var(--bg)]/85 px-5 py-3 text-[13px] font-medium uppercase tracking-wider text-[var(--fg)] backdrop-blur-md sm:flex-row sm:items-center sm:justify-between sm:px-8 sm:py-4 sm:text-sm md:px-10 md:text-base lg:text-[1.05rem]">
+  <a href="/" class="font-black tracking-tight">{site.name.split(' ')[0]}</a>
+  <ul class="flex flex-wrap gap-x-4 gap-y-1 sm:justify-end sm:gap-x-6 md:gap-x-8">
+    {links.map((l) => <li><a href={l.href} class="transition-opacity duration-200 hover:opacity-70">{l.label}</a></li>)}
+  </ul>
+</nav>

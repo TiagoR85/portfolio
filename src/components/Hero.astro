@@ -1,0 +1,68 @@
+---
+import { site } from '../content/site';
+import ContactButton from './ContactButton.astro';
+import GhostButton from './GhostButton.astro';
+import FadeIn from './motion/FadeIn.tsx';
+import Magnet from './motion/Magnet.tsx';
+import AccentPicker from './motion/AccentPicker.tsx';
+import Greeting from './motion/Greeting.tsx';
+
+const name = site.name;
+const wa = site.whatsapp ? `https://wa.me/${site.whatsapp}` : null;
+---
+
+<header class="relative flex min-h-[calc(100svh-64px)] flex-col overflow-clip px-5 pt-4 sm:px-8 sm:pt-6 md:px-10">
+  <div class="relative flex flex-1 flex-col justify-between">
+    <div class="relative flex flex-1 flex-col sm:block sm:flex-none">
+      <FadeIn delay={0.1} y={40}>
+        <h1 class="text-center font-black uppercase leading-[0.9] tracking-tight" style="container-type:inline-size">
+          <span aria-hidden="true" class="block font-medium normal-case tracking-normal text-[var(--accent)]" style="font-size:clamp(1.4rem,3.1vw,2.7rem)">
+            <Greeting client:visible />
+          </span>
+          <span class="mt-3 block font-light uppercase tracking-[0.4em] text-[var(--fg)]/55" style="font-size:clamp(.72rem,1.1vw,.95rem)">eu sou</span>
+          <span class="hero-heading mt-1 block whitespace-normal leading-[0.9] sm:whitespace-nowrap" style="font-size:clamp(1.5rem,11.4cqw,480px)">{name}</span>
+        </h1>
+      </FadeIn>
+
+      <!-- sobreposição: a foto sobe por cima da linha do nome (só a partir de sm) -->
+      <div class="relative z-30 mx-auto my-auto w-[240px] sm:pointer-events-none sm:absolute sm:left-1/2 sm:top-[80%] sm:-translate-x-1/2 sm:my-0 sm:w-[min(432px,65svh,52vw)] md:w-[min(504px,65svh,52vw)] lg:w-[min(576px,65svh,52vw)]">
+        <Magnet client:visible>
+          <div class="relative isolate">
+            <img src="/img/tiao.webp" alt="Retrato de Tiago Rodrigues" width={1000} height={1270}
+              class="pointer-events-auto h-auto w-full object-contain"
+              fetchpriority="high" />
+            <div aria-hidden="true"
+              class="pointer-events-none absolute inset-0 mix-blend-color [mask-image:url(/img/tie-mask.png)] [mask-size:100%_100%] [mask-repeat:no-repeat]"
+              style="background:var(--accent-tie, transparent)"></div>
+          </div>
+        </Magnet>
+        <!-- rail de cor: vertical, colado à lateral direita da foto (não acompanha o magnet) -->
+        <div class="pointer-events-auto absolute right-[-38px] top-[40%] z-20 -translate-y-1/2 sm:right-[-44px]">
+          <AccentPicker client:visible />
+        </div>
+      </div>
+    </div>
+
+    <div class="pointer-events-none relative z-40 flex flex-wrap items-end justify-between gap-x-8 gap-y-5 pb-6 sm:pb-8 md:pb-10">
+      <FadeIn delay={0.4} y={20}>
+        <div class="max-w-[400px]">
+          <p class="font-light uppercase leading-snug tracking-wide text-[var(--fg)]" style="font-size:clamp(.9rem, 1.7vw, 1.45rem)">{site.tagline}</p>
+          <ul class="mt-3 flex flex-wrap gap-x-5 gap-y-1.5 text-[var(--fg)]/70">
+            {site.proof.map((p) => (
+              <li class="flex items-baseline gap-1.5">
+                <span class="font-black text-[var(--fg)]" style="font-size:clamp(1rem, 2vw, 1.35rem)">{p.value}</span>
+                <span class="font-light uppercase tracking-wide" style="font-size:clamp(.6rem, 1vw, .75rem)">{p.label}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </FadeIn>
+      <FadeIn delay={0.5} y={20}>
+        <div class="pointer-events-auto flex flex-wrap items-center gap-3">
+          <ContactButton href={wa ?? `mailto:${site.email}`} label="Fale comigo" />
+          <GhostButton href="/cv" label="Ver CV" />
+        </div>
+      </FadeIn>
+    </div>
+  </div>
+</header>

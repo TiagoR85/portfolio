@@ -1,0 +1,82 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Badge from '../../components/Badge.astro';
+import GhostButton from '../../components/GhostButton.astro';
+import { site } from '../../content/site';
+
+export async function getStaticPaths() {
+  const all = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+
+  return all.map((project, index) => ({
+    params: { slug: project.id },
+    props: {
+      project,
+      prev: all[index - 1] ? { slug: all[index - 1].id, title: all[index - 1].data.title } : null,
+      next: all[index + 1] ? { slug: all[index + 1].id, title: all[index + 1].data.title } : null,
+    },
+  }));
+}
+
+const { project, prev, next } = Astro.props;
+const d = project.data;
+const { Content } = await render(project);
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareSourceCode',
+  name: d.title,
+  description: d.summary,
+  codeRepository: d.repo,
+  programmingLanguage: d.stack,
+  author: { '@type': 'Person', name: site.name, url: Astro.site },
+};
+---
+
+<Layout title={`${d.title} — ${site.name}`} description={d.summary} ogImage={`/og/${project.id}.png`}>
+  <script type="application/ld+json" set:html={JSON.stringify(ld).replace(/</g, '\\u003c')} />
+
+  <main id="conteudo" class="mx-auto flex max-w-6xl flex-col gap-14 px-5 py-16 sm:px-8 md:px-10 md:py-24">
+    <a href="/#projetos" class="text-sm uppercase tracking-widest text-[var(--fg)]/60 hover:text-[var(--fg)]">← Projetos</a>
+
+    <header class="flex flex-col gap-6">
+      <span class="text-xs uppercase tracking-widest text-[var(--fg)]/60">{d.category} · {String(d.order).padStart(2, '0')}</span>
+      <h1 class="hero-heading font-black uppercase leading-none" style="font-size:clamp(2.6rem, 9vw, 130px)">{d.title}</h1>
+      <p class="max-w-2xl font-light leading-relaxed text-[var(--fg)]/85" style="font-size:clamp(1rem, 2vw, 1.3rem)">{d.summary}</p>
+      <div class="flex flex-wrap gap-2">{d.stack.map((s) => <Badge text={s} />)}</div>
+      <div><GhostButton href={d.repo} label="Repositório no GitHub" external /></div>
+    </header>
+
+    <section aria-labelledby="problema" class="flex flex-col gap-4">
+      <h2 id="problema" class="text-xl font-medium uppercase tracking-widest text-[var(--fg)]">O problema</h2>
+      <p class="max-w-3xl font-light leading-relaxed text-[var(--fg)]/80">{d.problem}</p>
+    </section>
+
+    <section aria-labelledby="arquitetura" class="flex flex-col gap-4">
+      <h2 id="arquitetura" class="text-xl font-medium uppercase tracking-widest text-[var(--fg)]">Arquitetura</h2>
+      <img src={d.diagram} alt={`Diagrama de arquitetura do ${d.title}`} width={1200} height={205} class="w-full rounded-[var(--radius-tile)] border border-[var(--fg)]/20" loading="lazy" />
+    </section>
+
+    {d.prints.length > 0 && (
+      <section aria-labelledby="prints" class="flex flex-col gap-4">
+        <h2 id="prints" class="text-xl font-medium uppercase tracking-widest text-[var(--fg)]">Telas</h2>
+        <div class="grid gap-4 sm:grid-cols-2">
+          {d.prints.map((pr) => (
+            <img src={pr.src} alt={pr.alt} width={1280} height={800} class="w-full rounded-[var(--radius-tile)] border border-[var(--fg)]/20" loading="lazy" />
+          ))}
+        </div>
+      </section>
+    )}
+
+    <section aria-labelledby="resultado" class="flex flex-col gap-4">
+      <h2 id="resultado" class="text-xl font-medium uppercase tracking-widest text-[var(--fg)]">O que fica</h2>
+      <ul class="flex list-disc flex-col gap-2 pl-5 font-light leading-relaxed text-[var(--fg)]/80">{d.takeaways.map((t) => <li>{t}</li>)}</ul>
+    </section>
+
+    <div class="font-light leading-relaxed text-[var(--fg)]/80"><Content /></div>
+
+    <nav aria-label="Navegação entre projetos" class="flex justify-between gap-4 border-t border-[var(--fg)]/15 pt-6 text-sm">
+      {prev ? <a class="hover:opacity-70" href={`/projetos/${prev.slug}`}>← {prev.title}</a> : <span />}
+      {next ? <a class="hover:opacity-70" href={`/projetos/${next.slug}`}>{next.title} →</a> : <span />}
+    </nav>
+  </main>
+</Layout>

@@ -1,0 +1,11 @@
+---
+// src/pages/404.astro
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Página não encontrada — Tiago Rodrigues" description="Rota inexistente." ogImage="/og/home.png">
+  <main id="conteudo" class="flex min-h-screen flex-col items-center justify-center gap-8 px-5 text-center">
+    <h1 class="hero-heading font-black uppercase" style="font-size:clamp(4rem, 20vw, 200px)">404</h1>
+    <p class="text-[var(--fg)]/70">Essa página não existe.</p>
+    <a href="/" class="rounded-full border-2 border-[var(--fg)] px-8 py-3 text-sm font-medium uppercase tracking-widest hover:bg-[var(--fg)]/10">Voltar ao início</a>
+  </main>
+</Layout>

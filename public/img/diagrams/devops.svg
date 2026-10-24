@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 205" role="img" aria-label="Fluxo devops: PR, CI com quality gate e CVE, imagem, DEV, HOM e PROD com aprovação">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#D7E2EA"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="205" fill="#0C0C0C"/>
+  <g fill="#111" stroke="#D7E2EA" stroke-width="1.5">
+    <rect x="32" y="57" width="180" height="90" rx="12"/>
+    <rect x="272" y="57" width="230" height="90" rx="12"/>
+    <rect x="562" y="57" width="160" height="90" rx="12"/>
+    <rect x="782" y="57" width="115" height="90" rx="12"/>
+    <rect x="932" y="57" width="115" height="90" rx="12"/>
+    <rect x="1072" y="57" width="126" height="90" rx="12"/>
+  </g>
+  <g fill="#D7E2EA" font-family="Kanit, sans-serif" text-anchor="middle">
+    <text x="122" y="112" font-size="22">PR</text>
+    <text x="387" y="102" font-size="22">CI quality</text>
+    <text x="387" y="126" font-size="18" fill="#9DAAB6">gate + CVE</text>
+    <text x="642" y="112" font-size="22" font-style="italic">imagem</text>
+    <text x="839" y="112" font-size="22">DEV</text>
+    <text x="989" y="112" font-size="22">HOM</text>
+    <text x="1135" y="102" font-size="22">PROD</text>
+    <text x="1135" y="126" font-size="18" fill="#9DAAB6">aprovação</text>
+  </g>
+  <g stroke="#D7E2EA" stroke-width="1.5" marker-end="url(#arr)">
+    <line x1="212" y1="102" x2="267" y2="102"/>
+    <line x1="502" y1="102" x2="557" y2="102"/>
+    <line x1="722" y1="102" x2="777" y2="102"/>
+    <line x1="897" y1="102" x2="927" y2="102"/>
+    <line x1="1047" y1="102" x2="1067" y2="102"/>
+  </g>
+</svg>

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 205" role="img" aria-label="Fluxo do jobforge: API, Postgres com outbox, Redis com lease e dedup, Kafka, Runner, gRPC e UI">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#D7E2EA"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="205" fill="#0C0C0C"/>
+  <g fill="#111" stroke="#D7E2EA" stroke-width="1.5">
+    <rect x="40" y="57" width="140" height="90" rx="12"/>
+    <rect x="203" y="57" width="140" height="90" rx="12"/>
+    <rect x="366" y="57" width="140" height="90" rx="12"/>
+    <rect x="529" y="57" width="140" height="90" rx="12"/>
+    <rect x="692" y="57" width="140" height="90" rx="12"/>
+    <rect x="855" y="57" width="140" height="90" rx="12"/>
+    <rect x="1018" y="57" width="140" height="90" rx="12"/>
+  </g>
+  <g fill="#D7E2EA" font-family="Kanit, sans-serif" text-anchor="middle">
+    <text x="110" y="112" font-size="22">API</text>
+    <text x="273" y="102" font-size="22">Postgres</text>
+    <text x="273" y="126" font-size="18" fill="#9DAAB6">outbox</text>
+    <text x="436" y="102" font-size="22">Redis</text>
+    <text x="436" y="126" font-size="18" fill="#9DAAB6">lease + dedup</text>
+    <text x="599" y="112" font-size="22">Kafka</text>
+    <text x="762" y="112" font-size="22">Runner</text>
+    <text x="925" y="112" font-size="22">gRPC</text>
+    <text x="1088" y="112" font-size="22">UI</text>
+  </g>
+  <g stroke="#D7E2EA" stroke-width="1.5" marker-end="url(#arr)">
+    <line x1="180" y1="102" x2="198" y2="102"/>
+    <line x1="343" y1="102" x2="361" y2="102"/>
+    <line x1="506" y1="102" x2="524" y2="102"/>
+    <line x1="669" y1="102" x2="687" y2="102"/>
+    <line x1="832" y1="102" x2="850" y2="102"/>
+    <line x1="995" y1="102" x2="1013" y2="102"/>
+  </g>
+</svg>

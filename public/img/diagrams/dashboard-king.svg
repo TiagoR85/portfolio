@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 205" role="img" aria-label="Fluxo do dashboard: GitHub Actions, testes, Docker nginx, VPS e Blazor WASM no browser">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#D7E2EA"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="205" fill="#0C0C0C"/>
+  <g fill="#111" stroke="#D7E2EA" stroke-width="1.5">
+    <rect x="32" y="57" width="195" height="90" rx="12"/>
+    <rect x="267" y="57" width="195" height="90" rx="12"/>
+    <rect x="502" y="57" width="195" height="90" rx="12"/>
+    <rect x="737" y="57" width="195" height="90" rx="12"/>
+    <rect x="972" y="57" width="195" height="90" rx="12"/>
+  </g>
+  <g fill="#D7E2EA" font-family="Kanit, sans-serif" text-anchor="middle">
+    <text x="129" y="102" font-size="22">git push</text>
+    <text x="129" y="126" font-size="18" fill="#9DAAB6">GitHub Actions</text>
+    <text x="364" y="102" font-size="22">build + testes</text>
+    <text x="364" y="126" font-size="18" fill="#9DAAB6">dotnet publish</text>
+    <text x="599" y="102" font-size="22">nginx</text>
+    <text x="599" y="126" font-size="18" fill="#9DAAB6">container Docker</text>
+    <text x="834" y="102" font-size="22">VPS</text>
+    <text x="834" y="126" font-size="18" fill="#9DAAB6">porta 8081</text>
+    <text x="1069" y="102" font-size="22">browser</text>
+    <text x="1069" y="126" font-size="18" fill="#9DAAB6">Blazor WASM</text>
+  </g>
+  <g stroke="#D7E2EA" stroke-width="1.5" marker-end="url(#arr)">
+    <line x1="227" y1="102" x2="262" y2="102"/>
+    <line x1="462" y1="102" x2="497" y2="102"/>
+    <line x1="697" y1="102" x2="732" y2="102"/>
+    <line x1="932" y1="102" x2="967" y2="102"/>
+  </g>
+</svg>
