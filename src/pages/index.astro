@@ -1,0 +1,38 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import DiagramStrip from '../components/DiagramStrip.astro';
+import Services from '../components/Services.astro';
+import ProjectStack from '../components/ProjectStack.astro';
+import OtherProjects from '../components/OtherProjects.astro';
+import About from '../components/About.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../content/site';
+
+const person = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.name,
+  jobTitle: site.role,
+  url: Astro.site,
+  email: `mailto:${site.email}`,
+  sameAs: [site.github],
+  address: { '@type': 'PostalAddress', addressLocality: 'São José', addressRegion: 'SC', addressCountry: 'BR' },
+};
+---
+<Layout title="Tiago Rodrigues — back-end .NET, arquitetura distribuída e DevOps" description="Portfólio de Tiago Rodrigues: sistemas .NET entregues de ponta a ponta, mensageria, gRPC, Docker e CI/CD.">
+  <script type="application/ld+json" set:html={JSON.stringify(person).replace(/</g, '\\u003c')} />
+  <div style="overflow-x:clip">
+    <Hero />
+    <main id="conteudo">
+      <DiagramStrip />
+      <Services />
+      <ProjectStack />
+      <OtherProjects />
+      <About />
+      <Contact />
+      <Footer />
+    </main>
+  </div>
+</Layout>

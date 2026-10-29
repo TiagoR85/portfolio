@@ -1,0 +1,22 @@
+---
+import { site } from '../content/site';
+import SectionHeading from './SectionHeading.astro';
+import FadeIn from './motion/FadeIn.tsx';
+---
+
+<section id="servicos" class="relative z-10 rounded-t-[var(--radius-section)] bg-[var(--panel)] px-5 py-20 sm:px-8 sm:py-24 md:px-10 md:py-32">
+  <SectionHeading text="Serviços" dark />
+  <div class="mx-auto mt-16 max-w-5xl sm:mt-20 md:mt-28">
+    {site.services.map((s, i) => (
+      <FadeIn delay={i * 0.1}>
+        <div class:list={['flex items-start gap-4 border-[rgba(12,12,12,0.15)] py-8 sm:gap-6 sm:py-10 md:py-12', i > 0 && 'border-t']}>
+          <span class="shrink-0 pt-1 font-mono text-xs tracking-widest text-[var(--panel-fg)]/60">{s.n}</span>
+          <div class="flex flex-col gap-2">
+            <h3 class="font-medium uppercase text-[var(--panel-fg)]" style="font-size:clamp(1.15rem, 2.4vw, 2.1rem)">{s.name}</h3>
+            <p class="max-w-2xl font-light leading-relaxed text-[var(--panel-fg)]/60" style="font-size:clamp(.85rem, 1.6vw, 1.25rem)">{s.text}</p>
+          </div>
+        </div>
+      </FadeIn>
+    ))}
+  </div>
+</section>

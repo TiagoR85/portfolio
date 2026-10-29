@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 205" role="img" aria-label="Fluxo do doccheck: git commit, hook de pre-commit, três regras e veredito passa ou bloqueia">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#D7E2EA"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="205" fill="#0C0C0C"/>
+  <g fill="#111" stroke="#D7E2EA" stroke-width="1.5">
+    <rect x="30" y="57" width="240" height="90" rx="12"/>
+    <rect x="330" y="57" width="240" height="90" rx="12"/>
+    <rect x="630" y="57" width="240" height="90" rx="12"/>
+    <rect x="930" y="57" width="240" height="90" rx="12"/>
+  </g>
+  <g fill="#D7E2EA" font-family="Kanit, sans-serif" text-anchor="middle">
+    <text x="150" y="102" font-size="22">git commit</text>
+    <text x="150" y="126" font-size="18" fill="#9DAAB6">o gesto de otimismo</text>
+    <text x="450" y="102" font-size="22">pre-commit</text>
+    <text x="450" y="126" font-size="18" fill="#9DAAB6">.githooks (0,3 s)</text>
+    <text x="750" y="102" font-size="22">regras</text>
+    <text x="750" y="126" font-size="18" fill="#9DAAB6">versão · segredo · rota</text>
+    <text x="1050" y="102" font-size="22">passa</text>
+    <text x="1050" y="126" font-size="18" fill="#9DAAB6">ou bloqueia (exit 1)</text>
+  </g>
+  <g stroke="#D7E2EA" stroke-width="1.5" marker-end="url(#arr)">
+    <line x1="270" y1="102" x2="325" y2="102"/>
+    <line x1="570" y1="102" x2="625" y2="102"/>
+    <line x1="870" y1="102" x2="925" y2="102"/>
+  </g>
+</svg>

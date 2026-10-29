@@ -1,0 +1,90 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const notas = [
+  {
+    projeto: 'doccheck',
+    data: '2026-10-29',
+    titulo: 'A regra que não dá para avaliar é pulada',
+    resumo:
+      'Antes de virar ferramenta, a ideia era "todo caminho citado na doc existe no repo". Deu 242 achados em 11 repositórios e quase todos eram falso positivo: placeholder, elipse, plano congelado. O texto conta os números do experimento e por que o gate passou a pular regra em vez de falhar.',
+    href: 'https://github.com/TiagoR85/doccheck/blob/master/docs/engenharia.md',
+    privado: false,
+  },
+  {
+    projeto: 'logpipe',
+    data: 'ADR-0001',
+    titulo: 'O proto é a fonte única',
+    resumo:
+      'Ingestão e busca são tiers independentes que só se conhecem pelo contrato gRPC. O registro de decisão explica por que o contrato mora em repositório próprio — e o que aconteceria se cada tier tivesse a sua cópia.',
+    href: 'https://github.com/TiagoR85/logpipe-contracts/blob/main/docs/adr/ADR-0001-proto-as-single-source.md',
+    privado: false,
+  },
+  {
+    projeto: 'logpipe',
+    data: 'ADR-0003',
+    titulo: 'Protocolo de release do contrato',
+    resumo:
+      'Como publicar uma mudança de contrato sem quebrar consumidor silenciosamente: versionamento, compatibilidade e a ordem em que os tiers sobem.',
+    href: 'https://github.com/TiagoR85/logpipe-contracts/blob/main/docs/adr/ADR-0003-contract-release-protocol.md',
+    privado: false,
+  },
+  {
+    projeto: 'interview-assistant',
+    data: '2026-10-19',
+    titulo: 'Quanto a tradução realmente atrasa? (medindo o invisível)',
+    resumo:
+      'A pergunta era de percepção, virou instrumento: usar os timestamps da própria legenda do vídeo como referência absoluta. Mediana de 7,82 s desde o início da fala — mas apenas 1,8 s de espera depois da última palavra. O gargalo não é o modelo (~1 s), são picos de 7 s enfileirando turnos.',
+    href: null,
+    privado: true,
+  },
+];
+---
+
+<Layout
+  title="Notas de engenharia — Tiago Rodrigues"
+  description="Registro de decisões técnicas: o que foi tentado, o que falhou e por que o código ficou assim. Com números medidos, não opinião."
+>
+  <main class="mx-auto flex max-w-6xl flex-col gap-10 px-5 py-16 sm:px-8 md:px-10 md:py-24">
+    <header class="flex flex-col gap-6">
+      <a href="/#projetos" class="text-sm uppercase tracking-widest text-[var(--fg)]/60 hover:text-[var(--fg)]">← Projetos</a>
+      <h1 class="hero-heading font-black uppercase leading-none" style="font-size:clamp(2.4rem, 7vw, 96px)">Notas</h1>
+      <p class="max-w-2xl font-light leading-relaxed text-[var(--fg)]/85" style="font-size:clamp(1rem, 2vw, 1.2rem)">
+        Decisão técnica sem o número que a justificou é opinião. Estes são os registros de
+        engenharia dos projetos — o experimento que falhou, a medição que mudou o desenho,
+        o bug que só apareceu em produção.
+      </p>
+    </header>
+
+    <ul class="flex flex-col">
+      {notas.map((n) => (
+        <li class="flex flex-col gap-3 border-t border-[var(--fg)]/15 py-8">
+          <div class="flex flex-wrap items-center gap-3 text-xs uppercase tracking-widest text-[var(--fg)]/60">
+            <span>{n.projeto}</span>
+            <span aria-hidden="true">·</span>
+            <span>{n.data}</span>
+            {n.privado && (
+              <span class="rounded-full border border-[var(--fg)]/30 px-3 py-1 normal-case tracking-normal">
+                doc privada · resumo publicado
+              </span>
+            )}
+          </div>
+          <h2 class="text-xl font-medium leading-snug md:text-2xl">
+            {n.href ? (
+              <a href={n.href} target="_blank" rel="noopener noreferrer" class="hover:opacity-70">{n.titulo} ↗</a>
+            ) : (
+              n.titulo
+            )}
+          </h2>
+          <p class="max-w-3xl font-light leading-relaxed text-[var(--fg)]/80">{n.resumo}</p>
+        </li>
+      ))}
+    </ul>
+
+    <p class="max-w-3xl text-sm font-light leading-relaxed text-[var(--fg)]/60">
+      Nos projetos privados, o resumo acima é o que ficou público: a nota completa cita
+      caminho de máquina, host e credencial de ambiente por natureza. Publicar exige
+      sanitizar — e sanitizar por paráfrase é mais honesto que publicar metade.
+    </p>
+  </main>
+</Layout>

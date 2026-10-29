@@ -1,0 +1,6 @@
+---
+interface Props { text: string; dark?: boolean }
+const { text, dark = false } = Astro.props;
+---
+<h2 class:list={['font-black uppercase leading-none tracking-tight text-center', dark ? 'text-[var(--panel-fg)]' : 'hero-heading']}
+  style="font-size:clamp(3rem, 12vw, 160px)">{text}</h2>
