@@ -1,0 +1,69 @@
+---
+import '../styles/globals.css';
+import Navbar from '../components/Navbar.astro';
+interface Props { title: string; description: string; ogImage?: string }
+const { title, description, ogImage = '/og/home.png' } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site)} />
+    <meta property="og:locale" content="pt_BR" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={new URL(ogImage, Astro.site)} />
+    <link rel="preload" href="/fonts/kanit-900.woff2" as="font" type="font/woff2" crossorigin />
+    <script is:inline>
+      (function () {
+        try {
+          var a = localStorage.getItem('portfolio-accent-color');
+          var tie = localStorage.getItem('portfolio-tie');
+          if (a) document.documentElement.style.setProperty('--accent', a);
+          if (tie) document.documentElement.style.setProperty('--accent-tie', tie);
+        } catch (e) {}
+      })();
+    </script>
+    <!-- Analytics: Umami self-hosted na VPS (analytics.garagemdotiago.shop) — sem cookie, sem banner;
+         data-domains evita contar localhost/preview. O host também precisa estar no CSP (deploy/security-headers.conf). -->
+    <script is:inline defer data-website-id="bbf3d485-ce47-4fc3-b657-0f20675912cd" data-domains="portfolio.tiagords.com.br" src="https://analytics.garagemdotiago.shop/script.js"></script>
+    <script is:inline>
+      // intenção, não identidade: evento quando a visita vira ação, e "quem" quando o link carrega ?from=
+      // roda no load porque o script do Umami é defer; sem window.umami não faz nada e não quebra a página
+      (function () {
+        function track(name, data) {
+          try { if (window.umami) window.umami.track(name, data); } catch (e) {}
+        }
+        window.addEventListener('load', function () {
+          var from = new URLSearchParams(location.search).get('from');
+          if (from) track('ref', { canal: from.slice(0, 40) });
+        });
+        document.addEventListener('click', function (e) {
+          var a = e.target && e.target.closest && e.target.closest('a[href]');
+          if (!a) return;
+          var href = a.getAttribute('href') || '';
+          var ev = href.indexOf('mailto:') === 0 ? 'email-click'
+            : href.indexOf('wa.me') !== -1 ? 'whatsapp-click'
+            : /^\/cv\/?$/.test(href) ? 'cv-click'
+            : /github\.com|linkedin\.com/.test(href) ? 'social-click'
+            : null;
+          if (ev) track(ev, { href: href.slice(0, 120) });
+        });
+      })();
+    </script>
+  </head>
+  <body>
+    <a href="#conteudo" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-[var(--fg)] focus:px-6 focus:py-2 focus:text-[var(--panel-fg)]">Pular para o conteúdo</a>
+    <Navbar />
+    <slot />
+  </body>
+</html>

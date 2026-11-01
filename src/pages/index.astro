@@ -1,0 +1,59 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import DiagramStrip from '../components/DiagramStrip.astro';
+import Services from '../components/Services.astro';
+import ProjectStack from '../components/ProjectStack.astro';
+import OtherProjects from '../components/OtherProjects.astro';
+import About from '../components/About.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../content/site';
+
+const person = {
+  '@type': 'Person',
+  name: site.name,
+  jobTitle: site.role,
+  url: Astro.site,
+  image: new URL('/img/tiao.webp', Astro.url).href,
+  email: `mailto:${site.email}`,
+  // LinkedIn entra no sameAs: é o que desambigua a entidade para buscadores e para IA
+  sameAs: [site.github, site.linkedin],
+  knowsAbout: [...new Set(site.cv.skills.flatMap((g) => g.items))],
+  worksFor: { '@type': 'Organization', name: 'DBY Desenvolvimento de Sistemas' },
+  alumniOf: { '@type': 'CollegeOrUniversity', name: site.cv.education[0].institution },
+  address: { '@type': 'PostalAddress', addressLocality: 'São José', addressRegion: 'SC', addressCountry: 'BR' },
+};
+
+// serviço como entidade: é o formato que buscador e LLM leem quando alguém pergunta "quem faz X"
+const services = {
+  '@type': 'ItemList',
+  itemListElement: site.services.map((s, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    item: {
+      '@type': 'Service',
+      name: s.name,
+      description: s.text,
+      provider: { '@type': 'Person', name: site.name, url: Astro.site },
+      areaServed: { '@type': 'Country', name: 'Brasil' },
+    },
+  })),
+};
+const ld = { '@context': 'https://schema.org', '@graph': [person, services] };
+---
+<Layout title="Tiago Rodrigues — back-end .NET, arquitetura distribuída e DevOps" description="Portfólio de Tiago Rodrigues: sistemas .NET entregues de ponta a ponta, mensageria, gRPC, Docker e CI/CD.">
+  <script type="application/ld+json" set:html={JSON.stringify(ld).replace(/</g, '\\u003c')} />
+  <div style="overflow-x:clip">
+    <Hero />
+    <main id="conteudo">
+      <DiagramStrip />
+      <Services />
+      <ProjectStack />
+      <OtherProjects />
+      <About />
+      <Contact />
+      <Footer />
+    </main>
+  </div>
+</Layout>

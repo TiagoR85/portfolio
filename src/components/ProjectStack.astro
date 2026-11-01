@@ -1,0 +1,22 @@
+---
+import { getCollection } from 'astro:content';
+import SectionHeading from './SectionHeading.astro';
+import StickyCards from './motion/StickyCards.tsx';
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order)
+  .map((p) => ({
+    slug: p.id,
+    repo: p.data.repo,
+    title: p.data.title,
+    category: p.data.category,
+    summary: p.data.summary,
+    stack: p.data.stack.slice(0, 4),
+    takeaway: p.data.takeaways[0],
+    print: p.data.prints[0]?.src ?? null,
+    printAlt: p.data.prints[0]?.alt ?? '',
+  }));
+---
+<section id="projetos" class="relative z-10 -mt-10 rounded-t-[var(--radius-section)] bg-[var(--bg)] px-5 pb-32 pt-20 sm:-mt-12 sm:px-8 md:-mt-14 md:px-10 md:pt-28">
+  <SectionHeading text="Projetos" />
+  <div class="mt-14 md:mt-20"><StickyCards projects={projects} client:visible /></div>
+</section>

@@ -1,0 +1,20 @@
+---
+import { site } from '../content/site';
+import SectionHeading from './SectionHeading.astro';
+import Badge from './Badge.astro';
+import FadeIn from './motion/FadeIn.tsx';
+import AnimatedText from './motion/AnimatedText.tsx';
+import ContactButton from './ContactButton.astro';
+---
+<section id="sobre" class="relative flex min-h-screen flex-col items-center justify-center gap-10 overflow-hidden px-5 py-20 sm:gap-14 sm:px-8 md:gap-16 md:px-10">
+  <div class="pointer-events-none absolute bottom-[8%] right-[3%] opacity-60"><img src="/img/decor-grid.svg" alt="" width={130} height={130} class="w-[90px] sm:w-[130px] md:w-[180px]" loading="lazy" /></div>
+  <FadeIn y={40}><SectionHeading text="Sobre mim" /></FadeIn>
+  <AnimatedText client:visible text="Programo sistemas .NET de ponta a ponta: API, mensageria, painel, testes e deploy. Cada família de projetos abaixo tem repositório próprio, com README, testes e CI — a arquitetura que você lê é a que roda em produção." />
+  <FadeIn delay={0.1}>
+    <p class="mx-auto max-w-[560px] text-center font-light leading-relaxed text-[var(--fg)]/85" style="font-size:clamp(.95rem, 1.8vw, 1.2rem)">
+      Entusiasta de <span class="font-medium text-[var(--accent)]">IA aplicada</span>: levo modelos de linguagem para dentro de sistemas reais — do prompt ao deploy, com testes e código versionado.
+    </p>
+  </FadeIn>
+  <FadeIn delay={0.15} className="flex flex-wrap justify-center gap-2">{site.stack.map((s) => <Badge text={s} />)}</FadeIn>
+  <FadeIn delay={0.3}><ContactButton label="Ver CV" href="/cv" /></FadeIn>
+</section>

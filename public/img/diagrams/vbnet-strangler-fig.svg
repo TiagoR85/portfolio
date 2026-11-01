@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 205" role="img" aria-label="Strangler fig em VB.NET: façade, VB.NET legado e serviço novo com shadow traffic, e diff">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#D7E2EA"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="205" fill="#0C0C0C"/>
+  <g fill="#111" stroke="#D7E2EA" stroke-width="1.5">
+    <rect x="60" y="67" width="220" height="70" rx="12"/>
+    <rect x="480" y="5" width="260" height="70" rx="12"/>
+    <rect x="480" y="130" width="260" height="70" rx="12"/>
+    <rect x="920" y="67" width="220" height="70" rx="12"/>
+  </g>
+  <g fill="#D7E2EA" font-family="Kanit, sans-serif" text-anchor="middle">
+    <text x="170" y="111" font-size="22">Façade</text>
+    <text x="610" y="49" font-size="22">VB.NET legado</text>
+    <text x="610" y="174" font-size="22">serviço novo</text>
+    <text x="1030" y="111" font-size="22">diff</text>
+    <text x="610" y="111" font-size="18" fill="#9DAAB6">shadow traffic</text>
+  </g>
+  <g stroke="#D7E2EA" stroke-width="1.5" marker-end="url(#arr)">
+    <line x1="280" y1="95" x2="475" y2="48"/>
+    <line x1="280" y1="110" x2="475" y2="158"/>
+    <line x1="740" y1="45" x2="915" y2="93"/>
+    <line x1="740" y1="160" x2="915" y2="112"/>
+  </g>
+  <line x1="740" y1="102" x2="915" y2="102" stroke="#9DAAB6" stroke-width="1.5" stroke-dasharray="7 6" marker-end="url(#arr)"/>
+</svg>

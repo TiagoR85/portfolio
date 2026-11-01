@@ -1,0 +1,35 @@
+# Tiago Rodrigues
+
+> Engenheiro de software (back-end .NET) em São José / Florianópolis, SC, Brasil. Sócio e engenheiro principal no SAT (Sistema de Administração Tributária) da SEFAZ-SC. Trabalha de ponta a ponta: API, mensageria, painel, testes e deploy.
+
+## Fatos
+
+- 8+ anos em software; 20+ módulos no SAT/SEFAZ-SC; dezenas de milhões de documentos fiscais processados por mês.
+- Stack: C# 14 / .NET 10, PostgreSQL, Redis, Kafka, RabbitMQ, gRPC, Docker, Akka.NET, Blazor, GitHub Actions, Azure DevOps, Python.
+- Serviços: APIs e back-end sob medida; sistemas completos; DevOps e CI/CD; migração e arquitetura (strangler fig, SOAP→gRPC, sharding); filas e integrações (outbox, dedup, retry, DLQ).
+- Disponibilidade: remoto (Brasil) ou presencial em Florianópolis/SC; resposta em até 1 dia útil.
+- Certificação: Microsoft Certified: Azure Developer Associate (abr/2025).
+
+## Páginas
+
+- [Home](https://portfolio.tiagords.com.br/): serviços, projetos e contato
+- [CV](https://portfolio.tiagords.com.br/cv/): experiência, formação, certificações e skills
+- [Notas de engenharia](https://portfolio.tiagords.com.br/notas/): decisões técnicas com números medidos
+
+### Projetos
+
+- [jobforge](https://portfolio.tiagords.com.br/projetos/jobforge/): orquestração de jobs com outbox transacional, leases em Redis e status por gRPC
+- [logpipe](https://portfolio.tiagords.com.br/projetos/logpipe/): pipeline de logs em tiers independentes com contrato gRPC versionado
+- [einvoice](https://portfolio.tiagords.com.br/projetos/einvoice/): emissão de nota fiscal ponta a ponta com worker RabbitMQ e PDF
+- [plataforma DevOps](https://portfolio.tiagords.com.br/projetos/devops/): pipelines CI/CD reutilizáveis e template Docker production-grade
+- [soap-grpc-bridge](https://portfolio.tiagords.com.br/projetos/soap-grpc-bridge/): ponte SOAP 1.2 → gRPC com WSDL lido em runtime
+- [vbnet-strangler-fig](https://portfolio.tiagords.com.br/projetos/vbnet-strangler-fig/): migração estranguladora de VB.NET net48 para C#/.NET 10 com shadow traffic
+- [dashboard-king](https://portfolio.tiagords.com.br/projetos/dashboard-king/): dashboard Blazor WASM com 50+ rotas e deploy automático
+- [doccheck](https://portfolio.tiagords.com.br/projetos/doccheck/): fiscal de documentação que falha o commit quando doc e código discordam
+
+## Contato
+
+- E-mail: Tiago.rds85@hotmail.com
+- LinkedIn: https://www.linkedin.com/in/tiago-rodrigues-developerti
+- GitHub: https://github.com/TiagoR85
+- WhatsApp: https://wa.me/5548984710744

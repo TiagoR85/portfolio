@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@font-face { font-family: 'Kanit'; font-weight: 300; font-style: normal; font-display: swap; src: url('/fonts/kanit-300.woff2') format('woff2'); }
+@font-face { font-family: 'Kanit'; font-weight: 500; font-style: normal; font-display: swap; src: url('/fonts/kanit-500.woff2') format('woff2'); }
+@font-face { font-family: 'Kanit'; font-weight: 900; font-style: normal; font-display: swap; src: url('/fonts/kanit-900.woff2') format('woff2'); }
+
+/* Tokens: tema único escuro; o accent troca nome, gravata e CTAs. */
+:root {
+  --bg: #0C0C0C;
+  --fg: #D7E2EA;
+  --panel: #FFFFFF;
+  --panel-fg: #0C0C0C;
+  --accent: #97a5b4;
+  --accent-tie: transparent;
+  --radius-tile: 16px;
+  --radius-card: 40px;
+  --radius-section: 40px;
+  color-scheme: dark;
+}
+@media (min-width: 640px) { :root { --radius-card: 50px; --radius-section: 50px; } }
+@media (min-width: 768px) { :root { --radius-card: 60px; --radius-section: 60px; } }
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--fg); }
+body { font-family: 'Kanit', sans-serif; transition: background-color .35s ease, color .35s ease; }
+
+.hero-heading {
+  background: linear-gradient(180deg,
+    color-mix(in oklab, var(--accent) 52%, #000) 0%,
+    color-mix(in oklab, var(--accent) 40%, var(--fg)) 100%);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+
+.cta-pill {
+  background: linear-gradient(123deg,
+    color-mix(in oklab, var(--accent) 55%, #000) 7%,
+    color-mix(in oklab, var(--accent) 85%, #000) 48%,
+    color-mix(in oklab, var(--accent) 45%, #000) 100%);
+  box-shadow: 0 4px 4px rgba(0,0,0,.25), 4px 4px 12px rgba(0,0,0,.35) inset, inset 0 0 0 2px rgba(255,255,255,.85);
+}
+
+/* Entrada por transition + @starting-style: sem keyframes e sem opacity:0 no SSR. */
+.fade-in {
+  transition:
+    opacity var(--fade-duration, 0.5s) cubic-bezier(0.25, 0.1, 0.25, 1) var(--fade-delay, 0s),
+    transform var(--fade-duration, 0.5s) cubic-bezier(0.25, 0.1, 0.25, 1) var(--fade-delay, 0s);
+}
+@starting-style {
+  .fade-in { opacity: 0; transform: translate3d(var(--fade-x, 0px), var(--fade-y, 30px), 0); }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; animation-delay: 0s !important; transition-delay: 0s !important; } }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+@media print { body { background: #fff; } nav[aria-label="Navegação principal"] { display: none; } }
